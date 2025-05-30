@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  say-hello:
+  generate-postman-report:
     runs-on: ubuntu-latest
     steps:
       - name: Say Hello
