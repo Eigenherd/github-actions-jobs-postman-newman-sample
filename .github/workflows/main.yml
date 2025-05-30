@@ -1,4 +1,4 @@
-name: Hello World in Custom Container
+name: Postman Newman - Sample
 
 on:
   push:
