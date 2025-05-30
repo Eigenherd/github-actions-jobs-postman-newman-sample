@@ -18,8 +18,8 @@ jobs:
     environment: ${{ github.event.inputs.postmanEnvironment }}
     outputs:
       postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
-      postmanEnvironmentUsername: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_USERNAME }}    
-      postmanEnvironmentPassword: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_PASSWORD }}    
+      postmanEnvironmentUsername: ${{ steps.set-postman-env-var-username.outputs.POSTMAN_ENVIRONMENT_USERNAME }}    
+      postmanEnvironmentPassword: ${{ steps.set-postman-env-var-password.outputs.POSTMAN_ENVIRONMENT_PASSWORD }}    
       timestamp: ${{ steps.set-timestamp.outputs.TIMESTAMP }}    
       repositoryName: ${{ steps.set-repository-name.outputs.REPOSITORY_NAME }}    
     steps:
