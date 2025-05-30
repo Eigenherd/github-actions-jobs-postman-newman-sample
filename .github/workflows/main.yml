@@ -22,9 +22,12 @@ jobs:
     outputs:
       postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
       timestamp: ${{ steps.set-timestamp.outputs.TIMESTAMP }}    
+      repositoryName: ${{ steps.set-repository-name.outputs.REPOSITORY_NAME }}    
     steps:
       - id: set-timestamp
         run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%SZ')" >> $GITHUB_OUTPUT
+      - id: set-repository-name
+        run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_OUTPUT
       - id: set-postman-environment-id
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
@@ -40,7 +43,7 @@ jobs:
       postmanTestingReportHideResponseBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_RESPONSE_BODIES }}
       postmanTestingReportSkipEnvironmentVars: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_ENVIRONMENT_VARS }}
       postmanTestingReportSkipHeaders: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_HEADERS }}
-      postmanTestingReportFilename: "html-report_integration-test_${{ github.repository }}_${{ github.event.inputs.postmanEnvironment }}_${{ needs.start.outputs.timestamp }}_[#${{ github.run_number }}].html"
+      postmanTestingReportFilename: "html-report_integration-test_${{ needs.start.outputs.repositoryName }}_${{ github.event.inputs.postmanEnvironment }}_${{ needs.start.outputs.timestamp }}_[#${{ github.run_number }}].html"
       customerName: ${{ vars.CUSTOMER_NAME }}
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
