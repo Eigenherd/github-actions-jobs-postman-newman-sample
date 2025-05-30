@@ -18,6 +18,8 @@ jobs:
     environment: ${{ github.event.inputs.postmanEnvironment }}
     outputs:
       postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
+      postmanEnvironmentUsername: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_USERNAME }}    
+      postmanEnvironmentPassword: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_PASSWORD }}    
       timestamp: ${{ steps.set-timestamp.outputs.TIMESTAMP }}    
       repositoryName: ${{ steps.set-repository-name.outputs.REPOSITORY_NAME }}    
     steps:
@@ -28,6 +30,12 @@ jobs:
       - id: set-postman-environment-id
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
+      - id: set-postman-env-var-username
+        run: |
+          echo "POSTMAN_ENVIRONMENT_USERNAME=$(echo ${{ vars.POSTMAN_ENVIRONMENT_USERNAME }})" >> $GITHUB_OUTPUT
+      - id: set-postman-env-var-password
+        run: |
+          echo "POSTMAN_ENVIRONMENT_PASSWORD=$(echo ${{ vars.POSTMAN_ENVIRONMENT_PASSWORD }})" >> $GITHUB_OUTPUT
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     needs: start
@@ -42,6 +50,7 @@ jobs:
       postmanTestingReportSkipHeaders: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_HEADERS }}
       postmanTestingReportFilename: "html-report_integration-test_${{ needs.start.outputs.repositoryName }}_${{ github.event.inputs.postmanEnvironment }}_${{ needs.start.outputs.timestamp }}_[#${{ github.run_number }}].html"
       customerName: ${{ vars.CUSTOMER_NAME }}
+      commandAdditionalParameters: "--env-var \"username=${{ needs.start.outputs.postmanEnvironmentUsername }}\" --env-var \"password=${{ needs.start.outputs.postmanEnvironmentPassword }}\""
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
