@@ -35,7 +35,7 @@ jobs:
     needs: generate-postman-report
     with:
       #postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
-      postmanEnvironmentId: ${{ vars.postmanEnvironmentId }}
+      postmanEnvironmentId: $postmanEnvironmentId
       environment: ${{ github.event.inputs.postmanEnvironment }}
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
       postmanTestingReportIterationCount: ${{ vars.POSTMAN_TESTING_REPORT_ITERATION_COUNT }}
