@@ -33,3 +33,4 @@ jobs:
       customerName: ${{ vars.CUSTOMER_NAME }}
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
+      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
