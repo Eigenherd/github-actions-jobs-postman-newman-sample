@@ -4,7 +4,7 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      environment:
+      postmanEnvironment:
         description: "Postman Environment"
         required: true
         default: dev
@@ -21,6 +21,8 @@ jobs:
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     with:
-      postmanCollectionId: "8a18ab95-5fc7-4636-99c8-643da3580f80"
+      postmanEnvironment: ${{ github.event.inputs.environment }}
+      postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
+      postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
