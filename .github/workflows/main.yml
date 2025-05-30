@@ -7,11 +7,11 @@ on:
 jobs:
   say-hello:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GHCR_PAT }}
+#    container:
+#      image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
+#      credentials:
+#        username: ${{ github.actor }}
+#        password: ${{ secrets.GHCR_PAT }}
     steps:
       - name: Say Hello
         run: echo "Hello from inside my custom GHCR job container!"
