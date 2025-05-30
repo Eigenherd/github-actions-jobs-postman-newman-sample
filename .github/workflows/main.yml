@@ -50,7 +50,7 @@ jobs:
       postmanTestingReportSkipHeaders: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_HEADERS }}
       postmanTestingReportFilename: "html-report_integration-test_${{ needs.start.outputs.repositoryName }}_${{ github.event.inputs.postmanEnvironment }}_${{ needs.start.outputs.timestamp }}_[#${{ github.run_number }}].html"
       customerName: ${{ vars.CUSTOMER_NAME }}
-      commandAdditionalParameters: "--env-var 'username=${{ needs.start.outputs.postmanEnvironmentUsername }}' --env-var 'password=${{ needs.start.outputs.postmanEnvironmentPassword }}'"
+      commandAdditionalParameters: "--env-var \"username=${{ needs.start.outputs.postmanEnvironmentUsername }}\" --env-var \"password=${{ needs.start.outputs.postmanEnvironmentPassword }}\""
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
