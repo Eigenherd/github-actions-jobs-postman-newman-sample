@@ -1,0 +1,19 @@
+name: Postman Newman execution
+
+on:
+  workflow_call:
+    inputs:
+      postmanCollectionId:
+        type: string
+        required: true
+
+jobs:
+  run-postman-newman:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_PAT }}
+    steps:
+      - run: echo "Running build with ${{ inputs.postmanCollectionId }}"
