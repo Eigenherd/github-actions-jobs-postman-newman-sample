@@ -16,9 +16,11 @@ on:
         type: choice
 
 jobs:
-  generate-postman-report:
+  start:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.postmanEnvironment }}
+    outputs:
+      postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
     steps:
       - name: Say Hello to GHCR
         run: echo "Hello from inside my custom GHCR job container!"
@@ -28,14 +30,15 @@ jobs:
         run: echo "Hello environment id 1 ${{ vars.POSTMAN_ENVIRONMENT_ID }}"
       - name: Say Hello to Environment Id 2
         run: echo "Hello environment id 2 $postmanEnvironmentId"
-      - run: |
+      - id: set-postman-environment-id
+        run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }} | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
-    needs: generate-postman-report
+    needs: start
     with:
       #postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
-      postmanEnvironmentId: $postmanEnvironmentId
+      postmanEnvironmentId: ${{ needs.start.outputs.postmanEnvironmentId }}
       environment: ${{ github.event.inputs.postmanEnvironment }}
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
       postmanTestingReportIterationCount: ${{ vars.POSTMAN_TESTING_REPORT_ITERATION_COUNT }}
