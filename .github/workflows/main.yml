@@ -54,3 +54,4 @@ jobs:
     needs: call-run-postman-newman
     steps:
       - run: ls -la
+      - run: ls -la ${PWD}
