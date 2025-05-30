@@ -21,7 +21,10 @@ jobs:
     environment: ${{ github.event.inputs.postmanEnvironment }}
     outputs:
       postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
+      timestamp: ${{ steps.set-timestamp.outputs.TIMESTAMP }}    
     steps:
+      - id: set-timestamp
+        run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
       - id: set-postman-environment-id
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
@@ -29,7 +32,6 @@ jobs:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     needs: start
     with:
-      #postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
       postmanEnvironmentId: ${{ needs.start.outputs.postmanEnvironmentId }}
       environment: ${{ github.event.inputs.postmanEnvironment }}
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
@@ -38,7 +40,7 @@ jobs:
       postmanTestingReportHideResponseBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_RESPONSE_BODIES }}
       postmanTestingReportSkipEnvironmentVars: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_ENVIRONMENT_VARS }}
       postmanTestingReportSkipHeaders: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_HEADERS }}
-      postmanTestingReportFilename: "abc.html"
+      postmanTestingReportFilename: "html-report_integration-test_${{ github.repository }}_${{ github.event.inputs.postmanEnvironment }}_${{ needs.start.outputs.timestamp }}_[#${{ github.run_number }}].html"
       customerName: ${{ vars.CUSTOMER_NAME }}
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
