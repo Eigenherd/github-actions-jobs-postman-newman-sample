@@ -32,6 +32,9 @@ jobs:
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
       - run: echo "${PWD}"
+      - run: echo "hello world" > hi.txt
+      - run: ls -la
+      - run: cat hi.txt
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     needs: start
