@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     steps:
-      - name: Say Hello
+      - name: Say Hello to GHCR
         run: echo "Hello from inside my custom GHCR job container!"
-      - name: Say Hello
+      - name: Say Hello to Environment
         run: echo "Hello environment ${{ github.event.inputs.environment }}"
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
