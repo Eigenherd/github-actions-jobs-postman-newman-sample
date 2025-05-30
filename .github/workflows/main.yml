@@ -31,6 +31,7 @@ jobs:
 
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
+    needs: generate-postman-report
     with:
       postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
       environment: ${{ github.event.inputs.postmanEnvironment }}
