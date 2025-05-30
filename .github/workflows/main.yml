@@ -48,3 +48,8 @@ jobs:
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+  upload:
+    runs-on: ubuntu-latest
+    needs: call-run-postman-newman
+    steps:
+      - run: ls -la
