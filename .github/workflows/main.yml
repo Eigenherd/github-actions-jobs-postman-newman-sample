@@ -32,7 +32,7 @@ jobs:
         run: echo "Hello environment id 2 $postmanEnvironmentId"
       - id: set-postman-environment-id
         run: |
-          echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }} | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
+          echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     needs: start
