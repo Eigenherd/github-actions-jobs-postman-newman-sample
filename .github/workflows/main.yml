@@ -27,9 +27,7 @@ jobs:
       - name: Say Hello to Environment Id 1
         run: echo "Hello environment id 1 ${{ vars.POSTMAN_ENVIRONMENT_ID }}"
       - name: Say Hello to Environment Id 2
-        run: echo "Hello environment id 2 $POSTMAN_ENVIRONMENT_ID"
-      - name: Say Hello to Environment Id 3
-        run: echo "Hello environment id 3 $postmanEnvironmentId"
+        run: echo "Hello environment id 2 $postmanEnvironmentId"
 
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
