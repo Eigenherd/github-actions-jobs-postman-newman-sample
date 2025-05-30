@@ -53,5 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: call-run-postman-newman
     steps:
-      - run: ls -la
+      - run: echo ${PWD}
       - run: ls -la ${PWD}
+      - run: ls -la
