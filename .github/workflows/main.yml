@@ -37,7 +37,7 @@ jobs:
       environment: ${{ github.event.inputs.postmanEnvironment }}
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
       #postmanEnvironmentId2: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
-      postmanEnvironmentId: "$postmanEnvironmentId"
+      postmanEnvironmentId: $postmanEnvironmentId
       postmanTestingReportIterationCount: ${{ vars.POSTMAN_TESTING_REPORT_ITERATION_COUNT }}
       postmanTestingReportHideRequestBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_REQUEST_BODIES }}
       postmanTestingReportHideResponseBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_RESPONSE_BODIES }}
