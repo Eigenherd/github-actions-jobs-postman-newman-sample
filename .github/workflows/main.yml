@@ -24,5 +24,12 @@ jobs:
       postmanEnvironment: ${{ github.event.inputs.environment }}
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
       postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
+      postmanTestingReportIterationCount: ${{ vars.POSTMAN_TESTING_REPORT_ITERATION_COUNT }}
+      postmanTestingReportHideRequestBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_REQUEST_BODIES }}
+      postmanTestingReportHideResponseBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_RESPONSE_BODIES }}
+      postmanTestingReportSkipEnvironmentVars: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_ENVIRONMENT_VARS }}
+      postmanTestingReportSkipHeaders: ${{ vars.POSTMAN_TESTING_REPORT_SKIP_HEADERS }}
+      postmanTestingReportFilename: "abc.html"
+      customerName: ${{ vars.CUSTOMER_NAME }}
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
