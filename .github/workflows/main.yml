@@ -18,6 +18,11 @@ on:
 jobs:
   start:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_PAT }}
     environment: ${{ github.event.inputs.postmanEnvironment }}
     outputs:
       postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
