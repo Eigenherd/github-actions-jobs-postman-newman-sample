@@ -9,7 +9,7 @@ on:
         required: true
     secrets:
       GHCR_PAT:
-        description: ghrc personal access token
+        description: GHCR Personal Access Token
         required: true
 
 jobs:
