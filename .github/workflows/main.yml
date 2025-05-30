@@ -22,14 +22,6 @@ jobs:
     outputs:
       postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
     steps:
-      - name: Say Hello to GHCR
-        run: echo "Hello from inside my custom GHCR job container!"
-      - name: Say Hello to Environment
-        run: echo "Hello environment ${{ github.event.inputs.postmanEnvironment }}"
-      - name: Say Hello to Environment Id 1
-        run: echo "Hello environment id 1 ${{ vars.POSTMAN_ENVIRONMENT_ID }}"
-      - name: Say Hello to Environment Id 2
-        run: echo "Hello environment id 2 $postmanEnvironmentId"
       - id: set-postman-environment-id
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
