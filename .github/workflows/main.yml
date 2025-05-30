@@ -11,9 +11,7 @@ on:
           - dev
           - qa
         type: choice
-  schedule:
-    - cron: '0 19 * * *'
-    
+
 jobs:
   generate-postman-report:
     runs-on: ubuntu-latest
@@ -23,6 +21,8 @@ jobs:
         run: echo "Hello from inside my custom GHCR job container!"
       - name: Say Hello to Environment
         run: echo "Hello environment ${{ github.event.inputs.postmanEnvironment }}"
+      - name: Say Hello to Environment Id
+        run: echo "Hello environment id ${{ vars.POSTMAN_ENVIRONMENT_ID }}"
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     with:
