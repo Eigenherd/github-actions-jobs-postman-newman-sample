@@ -24,7 +24,7 @@ jobs:
       timestamp: ${{ steps.set-timestamp.outputs.TIMESTAMP }}    
     steps:
       - id: set-timestamp
-        run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+        run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%SZ')" >> $GITHUB_OUTPUT
       - id: set-postman-environment-id
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
