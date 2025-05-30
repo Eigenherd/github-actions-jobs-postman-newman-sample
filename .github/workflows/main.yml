@@ -1,7 +1,6 @@
 name: Postman Newman - Sample
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       postmanEnvironment:
@@ -12,6 +11,9 @@ on:
           - dev
           - qa
         type: choice
+  schedule:
+    - cron: '0 19 * * *'
+    
 jobs:
   generate-postman-report:
     runs-on: ubuntu-latest
