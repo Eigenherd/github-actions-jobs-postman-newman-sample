@@ -1,0 +1,12 @@
+name: Hello World in Custom Container
+
+on: [push]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello from inside my custom GHCR job container!"
