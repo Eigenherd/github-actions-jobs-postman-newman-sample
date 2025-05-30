@@ -31,6 +31,7 @@ jobs:
       - id: set-postman-environment-id
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
+      - run: echo "${{ github.workspace }}"
       - run: echo "${PWD}"
       - run: echo "hello world" > hi.txt
       - run: ls -la
