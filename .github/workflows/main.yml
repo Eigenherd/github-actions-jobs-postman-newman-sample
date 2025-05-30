@@ -16,6 +16,6 @@ jobs:
       - name: Say Hello
         run: echo "Hello from inside my custom GHCR job container!"
   call-run-postman-newman:
-    uses: eigenherd/github-actions-jobs-postman-newman-sample/.github/workflows/postman-newman-execution.yml@main
+    uses: Eigenherd/github-actions-jobs-postman-newman-sample/.github/workflows/postman-newman-execution.yml@main
     with:
       postmanCollectionId: "8a18ab95-5fc7-4636-99c8-643da3580f80"
