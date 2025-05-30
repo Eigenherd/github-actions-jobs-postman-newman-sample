@@ -7,16 +7,11 @@ on:
 jobs:
   say-hello:
     runs-on: ubuntu-latest
-#    container:
-#      image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
-#      credentials:
-#        username: ${{ github.actor }}
-#        password: ${{ secrets.GHCR_PAT }}
     steps:
       - name: Say Hello
         run: echo "Hello from inside my custom GHCR job container!"
   call-run-postman-newman:
-    uses: Eigenherd/github-actions-jobs-postman-newman-sample/.github/workflows/postman-newman-execution.yml@main
+    uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     with:
       postmanCollectionId: "8a18ab95-5fc7-4636-99c8-643da3580f80"
     secrets:
