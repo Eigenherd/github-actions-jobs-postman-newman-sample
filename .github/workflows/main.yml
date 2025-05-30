@@ -1,5 +1,8 @@
 name: Postman Newman - Sample
 
+env: 
+  postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
+
 on:
   workflow_dispatch:
     inputs:
@@ -21,8 +24,11 @@ jobs:
         run: echo "Hello from inside my custom GHCR job container!"
       - name: Say Hello to Environment
         run: echo "Hello environment ${{ github.event.inputs.postmanEnvironment }}"
-      - name: Say Hello to Environment Id
-        run: echo "Hello environment id ${{ vars.POSTMAN_ENVIRONMENT_ID }}"
+      - name: Say Hello to Environment Id 1
+        run: echo "Hello environment id 1 ${{ vars.POSTMAN_ENVIRONMENT_ID }}"
+      - name: Say Hello to Environment Id 2
+        run: echo "Hello environment id 2 ${{ vars.POSTMAN_ENVIRONMENT_ID }}"
+
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     with:
