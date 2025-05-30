@@ -4,7 +4,12 @@ on:
   workflow_call:
     inputs:
       postmanCollectionId:
+        description: Postman Collection Id
         type: string
+        required: true
+    secrets:
+      GHCR_PAT:
+        description: ghrc personal access token
         required: true
 
 jobs:
