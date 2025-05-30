@@ -1,6 +1,8 @@
 name: Hello World in Custom Container
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   say-hello:
