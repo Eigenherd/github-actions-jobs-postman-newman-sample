@@ -34,7 +34,7 @@ To set up a new Postman Newman Testing project, proceed as follows:
                 - qa
               type: choice
       ```
-    c. Übergabe von zusätzlichen Postman Environment Variables in <code>.jobs.call-run-postman-newman.secrets.COMMAND_ADDITIONAL_PARAMETERS</code>
+    c. Handover of additional Postman Environment Variables in <code>.jobs.call-run-postman-newman.secrets.COMMAND_ADDITIONAL_PARAMETERS</code>
 
       ```yml
       jobs:
