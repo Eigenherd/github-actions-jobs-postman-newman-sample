@@ -30,6 +30,7 @@ jobs:
     with:
       #postmanEnvironmentId: ${{ needs.start.outputs.postmanEnvironmentId }}
       #postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
+      postmanEnvironmentId: abc
       environment: ${{ github.event.inputs.postmanEnvironment }}
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
       postmanTestingReportIterationCount: ${{ vars.POSTMAN_TESTING_REPORT_ITERATION_COUNT }}
