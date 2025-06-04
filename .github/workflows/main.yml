@@ -20,7 +20,6 @@ jobs:
       postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}    
       timestamp: ${{ steps.set-timestamp.outputs.TIMESTAMP }}    
       repositoryName: ${{ steps.set-repository-name.outputs.REPOSITORY_NAME }}    
-      serviceUsername: ${{ steps.set-service-username.outputs.POSTMAN_ENVIRONMENT_USERNAME }}    
     steps:
       - id: set-timestamp
         run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%SZ')" >> $GITHUB_OUTPUT
@@ -29,9 +28,6 @@ jobs:
       - id: set-postman-environment-id
         run: |
           echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT
-      - id: set-service-username
-        run: |
-          echo "POSTMAN_ENVIRONMENT_USERNAME=$(echo ${{ secrets.POSTMAN_ENVIRONMENT_USERNAME }})" >> $GITHUB_OUTPUT
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     needs: start
@@ -49,5 +45,5 @@ jobs:
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-      COMMAND_ADDITIONAL_PARAMETERS: "--env-var \"username=${{ needs.start.outputs.serviceUsername }}\" --env-var \"password=${{ secrets.POSTMAN_ENVIRONMENT_PASSWORD }}\""
+      COMMAND_ADDITIONAL_PARAMETERS: "--env-var \"username=${{ secrets.POSTMAN_ENVIRONMENT_USERNAME }}\" --env-var \"password=${{ secrets.POSTMAN_ENVIRONMENT_PASSWORD }}\""
       USERNAME: ${{ secrets.POSTMAN_ENVIRONMENT_USERNAME }}
