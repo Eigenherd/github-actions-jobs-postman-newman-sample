@@ -33,7 +33,8 @@ jobs:
     needs: start
     with:
       postmanEnvironmentId: ${{ needs.start.outputs.postmanEnvironmentId }}
-      environment: ${{ github.event.inputs.postmanEnvironment }}
+      #environment: ${{ github.event.inputs.postmanEnvironment }}
+      environment: ${{ vars.POSTMAN_ENVIRONMENT_ID }}      
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
       postmanTestingReportIterationCount: ${{ vars.POSTMAN_TESTING_REPORT_ITERATION_COUNT }}
       postmanTestingReportHideRequestBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_REQUEST_BODIES }}
