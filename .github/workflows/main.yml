@@ -18,20 +18,23 @@ jobs:
     environment: ${{ github.event.inputs.postmanEnvironment }}
     outputs:
       timestamp: ${{ steps.set-timestamp.outputs.TIMESTAMP }}    
-      repositoryName: ${{ steps.set-repository-name.outputs.REPOSITORY_NAME }}    
+      repositoryName: ${{ steps.set-repository-name.outputs.REPOSITORY_NAME }}
+      postmanEnvironmentId: ${{ steps.set-postman-environment-id.outputs.POSTMAN_ENVIRONMENT_ID }}
     steps:
       - id: set-timestamp
         run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%SZ')" >> $GITHUB_OUTPUT
       - id: set-repository-name
         run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_OUTPUT
+      - id: set-postman-environment-id
+        run: |
+          echo "POSTMAN_ENVIRONMENT_ID=$(echo ${{ vars.POSTMAN_ENVIRONMENT_ID }})" >> $GITHUB_OUTPUT        
   call-run-postman-newman:
     uses: Eigenherd/github-actions-workflows-postman-newman/.github/workflows/postman-newman-execution.yml@main
     needs: start
     with:
-      #postmanEnvironmentId: ${{ needs.start.outputs.postmanEnvironmentId }}
-      postmanEnvironmentId: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
       environment: ${{ github.event.inputs.postmanEnvironment }}
       postmanCollectionId: ${{ vars.POSTMAN_COLLECTION_ID }}
+      postmanEnvironmentId: ${{ needs.start.outputs.postmanEnvironmentId }}
       postmanTestingReportIterationCount: ${{ vars.POSTMAN_TESTING_REPORT_ITERATION_COUNT }}
       postmanTestingReportHideRequestBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_REQUEST_BODIES }}
       postmanTestingReportHideResponseBodies: ${{ vars.POSTMAN_TESTING_REPORT_HIDE_RESPONSE_BODIES }}
