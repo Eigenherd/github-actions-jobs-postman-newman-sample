@@ -45,5 +45,5 @@ jobs:
     secrets:
       GHCR_PAT: ${{ secrets.GHCR_PAT }}
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-      POSTMAN_ENVIRONMENT_USERNAME: ${{ secrets.POSTMAN_ENVIRONMENT_USERNAME }}      
+      POSTMAN_ENVIRONMENT_USERNAME: "456${{ secrets.POSTMAN_ENVIRONMENT_USERNAME }}"
       COMMAND_ADDITIONAL_PARAMETERS: "--env-var \"username=123${{ secrets.POSTMAN_ENVIRONMENT_USERNAME }}\" --env-var \"password=${{ secrets.POSTMAN_ENVIRONMENT_PASSWORD }}\""
